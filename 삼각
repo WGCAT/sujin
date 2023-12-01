@@ -1,0 +1,9 @@
+package test;
+
+public class Add_NewClass {
+	public static void main(String[] args) {
+		int spaceCnt = 0;
+		
+		
+	}
+}
