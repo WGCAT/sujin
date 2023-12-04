@@ -2,7 +2,6 @@ package test;
 
 public class Add_NewClass {
 	public static void main(String[] args) {
-	public static void main(String[] args) {
 		//반복문으로 별삼각형을 입력받은 라인수에 맞게 출력하세요
 		
 		Scanner sc = new Scanner(System.in);
