@@ -1,0 +1,26 @@
+-- FOR 반복문
+DECLARE
+    V_LINE_CNT NUMBER(2) := 4;   -- 별삼각형 라인수
+    V_SPACE_CNT NUMBER(2) := 3;  -- 별삼각형 첫 줄 공백수 
+    V_STAR_CNT NUMBER(2) := 1;   -- 별삼각형 첫 줄 별표 수
+BEGIN   
+-- 처음줄공백이 트림되어서 빈줄 추가
+    DBMS_OUTPUT.PUT_LINE('');  
+    FOR i IN 0..(V_LINE_CNT-1) LOOP 
+        -- 공백
+        FOR S IN 0..(V_SPACE_CNT-1) LOOP
+            DBMS_OUTPUT.PUT(' ');
+        END LOOP;  
+        -- 별표
+        FOR t IN 0..(V_STAR_CNT-1) LOOP
+            DBMS_OUTPUT.PUT('*');
+        END LOOP;
+        -- 공백 과 별표 출력
+        DBMS_OUTPUT.PUT_LINE('');
+
+        V_SPACE_CNT := V_SPACE_CNT - 1;
+        V_STAR_CNT := V_STAR_CNT + 2;
+
+    END LOOP;
+END;
+/
