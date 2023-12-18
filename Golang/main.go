@@ -57,7 +57,7 @@ func main() {
 			fmt.Println()
 		} else if i == lineCnt1/2 {
 			fmt.Println()
-		} else if i > (lineCnt1/2) && i < lineCnt1 {
+		} else if i > lineCnt1/2 && i < lineCnt1 {
 			starCnt -= 1
 			fmt.Println()
 		} else if i == lineCnt1 {
@@ -71,13 +71,13 @@ func main() {
 		for j := 1; j <= starCnt; j++ {
 			fmt.Print("*")
 		}
-		if i < (lineCnt2 / 2) {
+		if i < lineCnt2/2 {
 			spaceCnt -= 1
 			starCnt += 2
 			fmt.Println()
-		} else if i == (lineCnt2 / 2) {
+		} else if i == lineCnt2/2 {
 			fmt.Println()
-		} else if i > (lineCnt2/2) && i < lineCnt2 {
+		} else if i > lineCnt2/2 && i < lineCnt2 {
 			spaceCnt += 1
 			starCnt -= 2
 			fmt.Println()
