@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	// 	// go의 타입
@@ -18,7 +20,6 @@ func main() {
 	// if a < 10 || a == 8 {
 
 	// }
-
 	// fmt.Print(sum(5, 7))
 
 	var lineCnt int = 5
