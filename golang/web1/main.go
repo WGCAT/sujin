@@ -1,11 +1,10 @@
 package main
 
 import (
-	"main/myapp"
+	myapp "command-line-argumentsC:\\GO_LAB\\sujin\\golang\\web1\\myapp\\app.go"
 	"net/http"
 )
 
 func main() {
-
-	http.ListenAndServe(":3000", myapp.NewHttpHandler())
+	http.ListenAndServe(":3000", myapp.NewHandler())
 }
