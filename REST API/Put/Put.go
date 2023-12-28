@@ -1,9 +1,9 @@
-func TestUpdateUser(t *testing.T) { //Delete 테스트
+func TestUpdateUser(t *testing.T) {
 	assert := assert.New(t)
 
 	ts := httptest.NewServer(NewHandler())
 	defer ts.Close()
-	//Get이랑 Post는 http api에서 기본함수로 제공해주는데 delete는 없음
+
 	req, _ := http.NewRequest("Put", ts.URL+"/users",
 		strings.NewReader(`{"id":1, "first_name":"updated", "last_name":"updated", "email":"updated@naver.com"}`))
 	resp, err := http.DefaultClient.Do(req)
@@ -37,4 +37,33 @@ func TestUpdateUser(t *testing.T) { //Delete 테스트
 	assert.Equal("updated", updateUser.FirstName)
 	assert.Equal("", updateUser.LastName)
 	assert.Equal(user.Email, updateUser.Email)
+}
+
+func updateUserHandler(w http.ResponseWriter, r *http.Request) {
+	updateUser := new(User)
+	err := json.NewDecoder(r.Body).Decode(updateUser)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, err)
+	}
+	user, ok := userMap[updateUser.ID]
+	if !ok {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, "No User ID:", updateUser.ID)
+		return
+	}
+	if updateUser.FirstName != "" {
+		user.FirstName = updateUser.FirstName
+	}
+	if updateUser.LastName != "" {
+		user.LastName = updateUser.LastName
+	}
+	if updateUser.Email != "" {
+		user.Email = updateUser.Email
+	}
+
+	w.Header().Add("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	data, _ := json.Marshal(user)
+	fmt.Fprint(w, string(data), updateUser.ID)
 }
