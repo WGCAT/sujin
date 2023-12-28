@@ -1,3 +1,10 @@
+type User struct { //제이슨이 읽을 수 있는 유저 스트럭트를 만듦
+	ID        int       `json:"ID"`
+	FirstName string    `json:"first_name"`
+	LastName  string    `json:"last_name"`
+	Email     string    `json:"email"`
+	CreatedAt time.Time `json:"created_at"`
+}
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) { //실제 유저를 생성하는 코드를 만들어야하는데 클라이언트가 유저정보를 제이슨으로 보냈음
 	user := new(User)
 	err := json.NewDecoder(r.Body).Decode(user)
@@ -28,7 +35,6 @@ func NewHandler() http.Handler {
 
 	return mux
 }
-
 
 
 
