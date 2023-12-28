@@ -17,6 +17,23 @@ func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Deleted User ID:", id)
 }
 
+func NewHandler() http.Handler {
+	userMap = make(map[int]*User) //맵에 유저를 언제 등록할거냐 바로위 크리에이트 할때
+	lastID = 0
+	mux := mux.NewRouter()
+
+	mux.HandleFunc("/", indexHandler)
+	mux.HandleFunc("/users", usersHandler).Methods("GET") //GET메소드일때 이 usersHandler가 불려라 정함
+	mux.HandleFunc("/users", updateUserHandler).Methods("POST")
+	// mux.HandleFunc("/users/89", getUserInfo89Handler) 89가 아니라 아이디를 나타내는 {id:[0-9]+}문법으로 (고릴라)
+	mux.HandleFunc("/users", createUserHandler).Methods("PUT")
+	mux.HandleFunc("/users/{id:[0-9]+}", getUserInfoHandler).Methods("GET")
+	mux.HandleFunc("/users/{id:[0-9]+}", deleteUserHandler).Methods("DELETE")
+
+	return mux
+}
+
+
 func TestDeleteUser(t *testing.T) { //Delete 테스트
 	assert := assert.New(t)
 
