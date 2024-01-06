@@ -1,5 +1,5 @@
 func getUserInfoHandler(w http.ResponseWriter, r *http.Request) { //고정 89가 아니라 아이디를 나타내줘야하므로 mux.Vars사용한다
-	vars := mux.Vars(r) //알아서 테스트 패싱해주ㅠㅁ
+	vars := mux.Vars(r) //알아서 테스트 패싱해줌
 	fmt.Fprint(w, "User Id:", vars["id"])
 }
 
