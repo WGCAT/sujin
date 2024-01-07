@@ -62,7 +62,9 @@ func fooHandler(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte(resp))
 		}
 	case "DELETE":
-		{
+		{	pathParams := strings.Split(r.URL.Path, "/")
+			userId := pathParams[len(pathParams)-1]
+		 
 			delete(users, "ID")
 		}
 	}
